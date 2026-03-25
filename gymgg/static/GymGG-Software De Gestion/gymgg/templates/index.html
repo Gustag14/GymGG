@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GymGG</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     LANDING
+══════════════════════════════════ -->
+<div id="landing">
+  <nav class="land-nav">
+    <div class="land-logo">GYM<span>GG</span></div>
+    <div class="land-nav-links">
+      <a href="#features" data-i18n="nav.features">Funciones</a>
+      <a href="#" data-i18n="nav.pricing">Precios</a>
+      <a href="#" data-i18n="nav.about">Nosotros</a>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-ghost" onclick="openAuth('login')" data-i18n="nav.login">Iniciar sesión</button>
+      <button class="btn-cta" onclick="openAuth('register')" data-i18n="nav.start">Empieza gratis</button>
+      <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <h1><em data-i18n="hero.title1">SOFTWARE DE</em><br>GESTIÓN<br><em data-i18n="hero.title2">QUE TRABAJA</em><br>POR TI</h1>
+      <p data-i18n="hero.desc">Centraliza clientes, clases y reservas en una sola plataforma.</p>
+      <div class="hero-btns">
+        <button class="btn-hero" onclick="openAuth('register')" data-i18n="hero.cta">Empieza ahora →</button>
+        <button class="btn-hero-out" onclick="openAuth('login')" data-i18n="hero.login">Iniciar sesión</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-mockup">
+        <div class="mock-header">
+          <div class="mock-title" data-i18n="mock.title">CLASES HOY</div>
+          <div class="mock-badge" data-i18n="mock.live">EN VIVO</div>
+        </div>
+        <div class="mock-class">
+          <div class="mc-left"><div class="mc-icon">🧘</div><div><div class="mc-name">Yoga</div><div class="mc-time">09:00 — 10:00</div></div></div>
+          <div class="mc-spots">8 plazas</div>
+        </div>
+        <div class="mock-class">
+          <div class="mc-left"><div class="mc-icon">🚴</div><div><div class="mc-name">Spinning</div><div class="mc-time">11:00 — 12:00</div></div></div>
+          <div class="mc-spots mc-full">COMPLETA</div>
+        </div>
+        <div class="mock-class">
+          <div class="mc-left"><div class="mc-icon">🥊</div><div><div class="mc-name">Boxeo</div><div class="mc-time">18:00 — 19:00</div></div></div>
+          <div class="mc-spots">12 plazas</div>
+        </div>
+        <button class="mock-btn" onclick="openAuth('register')" data-i18n="mock.btn">Reservar clase →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="feat-title" data-i18n="feat.title">TODO LO QUE NECESITAS</div>
+    <div class="feat-sub" data-i18n="feat.sub">Una plataforma, todas las herramientas</div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-ico">👤</div><h3 data-i18n="f1.t">Gestión de Usuarios</h3><p data-i18n="f1.d">Registro, login y control de roles con interfaces personalizadas.</p></div>
+      <div class="feat-card"><div class="feat-ico">🏋️</div><h3 data-i18n="f2.t">Gestión de Clases</h3><p data-i18n="f2.d">Crea, edita y elimina clases con control de capacidad en tiempo real.</p></div>
+      <div class="feat-card"><div class="feat-ico">📅</div><h3 data-i18n="f3.t">Sistema de Reservas</h3><p data-i18n="f3.d">Control de plazas, prevención de duplicados y cancelaciones.</p></div>
+      <div class="feat-card"><div class="feat-ico">📊</div><h3 data-i18n="f4.t">Panel Administrativo</h3><p data-i18n="f4.d">Dashboard con KPIs, usuarios, clases y seguimiento de reservas.</p></div>
+      <div class="feat-card"><div class="feat-ico">🌐</div><h3 data-i18n="f5.t">Multiidioma</h3><p data-i18n="f5.d">Soporte completo en español e inglés sin recargar la página.</p></div>
+      <div class="feat-card"><div class="feat-ico">📝</div><h3 data-i18n="f6.t">Base de Datos Real</h3><p data-i18n="f6.d">SQLite con Flask-SQLAlchemy. Datos persistentes con logs de trazabilidad.</p></div>
+    </div>
+  </section>
+
+  <footer class="land-footer">
+    <div class="land-logo" style="font-size:1.2rem">GYM<span style="color:var(--accent)">GG</span></div>
+    <span data-i18n="footer">© 2026 GymGG. Todos los derechos reservados.</span>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════
+     AUTH MODAL
+══════════════════════════════════ -->
+<div id="auth-modal">
+  <div class="auth-box">
+    <div class="auth-box-head">
+      <div class="auth-logo">GYM<span>GG</span></div>
+      <button class="auth-close" onclick="closeAuth()">✕</button>
+    </div>
+    <div class="atabs">
+      <button class="atab active" onclick="switchAuth('login')" data-i18n="tab.login">Iniciar sesión</button>
+      <button class="atab" onclick="switchAuth('register')" data-i18n="tab.register">Registrarse</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="fview active" id="fv-login">
+      <div class="fh" data-i18n="login.title">BIENVENIDO</div>
+      <div class="fs" data-i18n="login.sub">Accede a tu panel</div>
+      <div class="role-tabs">
+        <div class="rtab active" onclick="setRole(this,'admin')" data-i18n="role.admin">Administrador</div>
+        <div class="rtab" onclick="setRole(this,'cliente')" data-i18n="role.client">Cliente</div>
+      </div>
+      <div class="fg"><label data-i18n="field.email">Correo electrónico</label><input type="email" id="l-email" placeholder="correo@gymgg.com"/></div>
+      <div class="fg"><label data-i18n="field.pass">Contraseña</label><input type="password" id="l-pass" placeholder="••••••••"/></div>
+      <div class="err" id="l-err"></div>
+      <button class="btn-auth" id="btn-login" onclick="doLogin()"><span data-i18n="btn.login">INICIAR SESIÓN</span></button>
+      <p class="switch-txt"><span data-i18n="noAccount">¿No tienes cuenta?</span> <a class="a-link" onclick="switchAuth('register')" data-i18n="goRegister">Regístrate</a></p>
+    </div>
+
+    <!-- REGISTRO -->
+    <div class="fview" id="fv-register">
+      <div class="fh" data-i18n="reg.title">CREAR CUENTA</div>
+      <div class="fs" data-i18n="reg.sub">Únete a GymGG</div>
+      <div class="row2">
+        <div class="fg"><label data-i18n="field.name">Nombre</label><input id="r-nombre" placeholder="Ana"/></div>
+        <div class="fg"><label data-i18n="field.surname">Apellido</label><input id="r-apellido" placeholder="García"/></div>
+      </div>
+      <div class="fg"><label data-i18n="field.email">Correo electrónico</label><input type="email" id="r-email" placeholder="ana@email.com"/></div>
+      <div class="fg"><label data-i18n="field.pass">Contraseña</label><input type="password" id="r-pass" placeholder="Mínimo 6 caracteres"/></div>
+      <div class="err" id="r-err"></div>
+      <div class="ok" id="r-ok"></div>
+      <button class="btn-auth" onclick="doRegister()"><span data-i18n="btn.register">CREAR CUENTA</span></button>
+      <p class="switch-txt"><span data-i18n="hasAccount">¿Ya tienes cuenta?</span> <a class="a-link" onclick="switchAuth('login')" data-i18n="goLogin">Inicia sesión</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     APP
+══════════════════════════════════ -->
+<div id="app">
+  <div class="sidebar">
+    <div class="sb-head">
+      <div class="sb-logo">GYM<span>GG</span></div>
+      <div class="sb-role-badge" id="sb-badge">Admin</div>
+    </div>
+    <div class="sb-nav" id="sb-nav"></div>
+    <div class="sb-foot">
+      <div class="sb-uname" id="sb-uname">—</div>
+      <div class="sb-uemail" id="sb-uemail">—</div>
+      <button class="btn-out" onclick="doLogout()" data-i18n="btn.logout">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="lang-bar">
+      <button class="lang-btn active" id="app-btn-es" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" id="app-btn-en" onclick="setLang('en')">EN</button>
+    </div>
+
+    <!-- ADMIN: DASHBOARD -->
+    <div class="sec" id="sec-dashboard">
+      <div class="sec-hdr">
+        <div><div class="sec-title" data-i18n="dash.title">PANEL PRINCIPAL</div><div class="sec-sub" data-i18n="dash.sub">Resumen general del gimnasio</div></div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><div class="kpi-n" id="kpi-users">0</div><div class="kpi-l" data-i18n="kpi.users">Usuarios</div></div>
+        <div class="kpi"><div class="kpi-n" id="kpi-clases">0</div><div class="kpi-l" data-i18n="kpi.classes">Clases activas</div></div>
+        <div class="kpi"><div class="kpi-n" id="kpi-reservas">0</div><div class="kpi-l" data-i18n="kpi.bookings">Reservas activas</div></div>
+        <div class="kpi"><div class="kpi-n" id="kpi-ocup">0%</div><div class="kpi-l" data-i18n="kpi.occ">Ocupación media</div></div>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-top"><div class="tbl-top-title" data-i18n="dash.recent">Últimas reservas</div></div>
+        <table><thead><tr><th data-i18n="th.client">Cliente</th><th data-i18n="th.class">Clase</th><th data-i18n="th.date">Fecha</th><th data-i18n="th.status">Estado</th></tr></thead>
+        <tbody id="tb-recent"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ADMIN: CLASES -->
+    <div class="sec" id="sec-admin-clases">
+      <div class="sec-hdr">
+        <div><div class="sec-title" data-i18n="classes.title">CLASES</div><div class="sec-sub" data-i18n="classes.sub">Gestiona el catálogo de clases</div></div>
+        <button class="btn-add" onclick="openModal('clase')" data-i18n="btn.addClass">+ Añadir clase</button>
+      </div>
+      <div class="tbl-wrap">
+        <table><thead><tr><th data-i18n="th.name">Nombre</th><th data-i18n="th.schedule">Horario</th><th data-i18n="th.trainer">Entrenador</th><th data-i18n="th.cap">Capacidad</th><th data-i18n="th.status">Estado</th><th data-i18n="th.actions">Acciones</th></tr></thead>
+        <tbody id="tb-admin-clases"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ADMIN: USUARIOS -->
+    <div class="sec" id="sec-usuarios">
+      <div class="sec-hdr">
+        <div><div class="sec-title" data-i18n="users.title">USUARIOS</div><div class="sec-sub" data-i18n="users.sub">Todos los usuarios registrados</div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table><thead><tr><th data-i18n="th.name">Nombre</th><th data-i18n="field.email">Email</th><th data-i18n="th.role">Rol</th><th data-i18n="th.date">Registro</th><th data-i18n="th.actions">Acciones</th></tr></thead>
+        <tbody id="tb-usuarios"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ADMIN: RESERVAS -->
+    <div class="sec" id="sec-admin-reservas">
+      <div class="sec-hdr">
+        <div><div class="sec-title" data-i18n="bookings.title">RESERVAS</div><div class="sec-sub" data-i18n="bookings.sub">Todas las reservas del gimnasio</div></div>
+        <button class="btn-add" onclick="openModal('reserva')" data-i18n="btn.addBooking">+ Nueva reserva</button>
+      </div>
+      <div class="tbl-wrap">
+        <table><thead><tr><th data-i18n="th.client">Cliente</th><th data-i18n="th.class">Clase</th><th data-i18n="th.date">Fecha</th><th data-i18n="th.status">Estado</th><th data-i18n="th.actions">Acciones</th></tr></thead>
+        <tbody id="tb-admin-reservas"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ADMIN: LOGS -->
+    <div class="sec" id="sec-logs">
+      <div class="sec-hdr">
+        <div><div class="sec-title" data-i18n="logs.title">REGISTRO DE EVENTOS</div><div class="sec-sub" data-i18n="logs.sub">Trazabilidad en formato JSON</div></div>
+        <button class="btn-add" onclick="exportLogs()" data-i18n="btn.exportLogs">⬇ Exportar JSON</button>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-top"><span id="log-count">0 eventos</span></div>
+        <table><thead><tr><th data-i18n="th.date">Fecha/Hora</th><th data-i18n="th.user">Usuario</th><th>Acción</th><th>Detalle</th></tr></thead>
+        <tbody id="tb-logs"></tbody></table>
+      </div>
+    </div>
+
+    <!-- CLIENTE: CLASES -->
+    <div class="sec" id="sec-clases-cliente">
+      <div class="sec-hdr">
+        <div><div class="sec-title" data-i18n="client.classes">CLASES DISPONIBLES</div><div class="sec-sub" data-i18n="client.classes.sub">Reserva tu plaza</div></div>
+      </div>
+      <div class="class-grid" id="cg-clases"></div>
+    </div>
+
+    <!-- CLIENTE: MIS RESERVAS -->
+    <div class="sec" id="sec-mis-reservas">
+      <div class="sec-hdr">
+        <div><div class="sec-title" data-i18n="client.mybookings">MIS RESERVAS</div><div class="sec-sub" data-i18n="client.mybookings.sub">Gestiona tus reservas</div></div>
+      </div>
+      <div id="mis-reservas-list"></div>
+    </div>
+
+    <!-- PERFIL -->
+    <div class="sec" id="sec-perfil">
+      <div class="sec-hdr"><div><div class="sec-title" data-i18n="profile.title">MI PERFIL</div></div></div>
+      <div class="profile-card">
+        <div class="profile-top">
+          <div class="p-avatar" id="p-avatar">A</div>
+          <div><div class="p-name" id="p-name">—</div><div class="p-email-disp" id="p-email">—</div></div>
+        </div>
+        <div class="profile-form">
+          <div class="fg"><label data-i18n="field.name">Nombre</label><input id="p-input-name" placeholder="Tu nombre"/></div>
+          <div class="fg"><label data-i18n="field.email">Email</label><input id="p-input-email" placeholder="Tu email"/></div>
+          <div class="fg"><label data-i18n="field.pass">Nueva contraseña (opcional)</label><input type="password" id="p-input-pass" placeholder="Dejar vacío para no cambiar"/></div>
+          <button class="btn-add" onclick="saveProfile()" data-i18n="btn.save">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODALES -->
+<div class="modal-bg" id="modal-clase">
+  <div class="modal">
+    <h3 id="m-clase-title">NUEVA CLASE</h3>
+    <input type="hidden" id="m-clase-id"/>
+    <div class="fg"><label data-i18n="field.name">Nombre</label><input id="m-nombre" placeholder="Yoga"/></div>
+    <div class="fg"><label data-i18n="th.schedule">Horario</label><input id="m-horario" placeholder="Lunes 09:00 — 10:00"/></div>
+    <div class="fg"><label data-i18n="th.trainer">Entrenador</label><input id="m-entrenador" placeholder="Carlos Pérez"/></div>
+    <div class="row2">
+      <div class="fg"><label data-i18n="th.cap">Capacidad</label><input id="m-cap" type="number" placeholder="20"/></div>
+      <div class="fg"><label>Icono</label><input id="m-icono" placeholder="🏋️"/></div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-save" onclick="saveClase()" data-i18n="btn.save">GUARDAR</button>
+      <button class="btn-cancel" onclick="closeModal('clase')" data-i18n="btn.cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-reserva">
+  <div class="modal">
+    <h3 data-i18n="btn.addBooking">NUEVA RESERVA</h3>
+    <div class="fg"><label data-i18n="th.client">Cliente</label><select id="m-r-cliente"></select></div>
+    <div class="fg"><label data-i18n="th.class">Clase</label><select id="m-r-clase"></select></div>
+    <div class="fg"><label data-i18n="th.date">Fecha</label><input id="m-r-fecha" type="date"/></div>
+    <div class="modal-btns">
+      <button class="btn-save" onclick="saveReserva()" data-i18n="btn.save">GUARDAR</button>
+      <button class="btn-cancel" onclick="closeModal('reserva')" data-i18n="btn.cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/static/js/i18n.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
